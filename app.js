@@ -3,8 +3,13 @@ const app = express();
 const axios = require("axios");
 const Twitter = require('./api/helpers/twitter');
 const twitter = new Twitter();
-
 const port = 3000;
+require('dotenv').config();
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next()
+});
 
 app.get("/tweets", (req, res) => {
     console.log(req.query);
